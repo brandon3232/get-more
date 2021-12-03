@@ -128,6 +128,8 @@ public class RegistroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxSexo.setItems(comboSexoContent);
+        inicioSesionPane.setVisible(true);
+        registroPane.setVisible(false);
     }
 
 

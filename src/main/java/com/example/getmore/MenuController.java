@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,6 +31,10 @@ public class MenuController implements Initializable {
  @FXML private VBox vBoxMenu;
  @FXML private VBox vBoxSubMenu11;
  @FXML private VBox vBoxSubMenu12;
+ @FXML private VBox vBoxSubMenu13;
+ @FXML private VBox vBoxSubMenu14;
+ @FXML private Button buttonSiguiente;
+ @FXML private Button buttonAtras;
 
  public void init(String nombre, String apellido,Stage stage, RegistroController registroController1){
   labelHolaNombre.setText("Hola " + nombre);
@@ -49,6 +54,8 @@ public class MenuController implements Initializable {
   vBoxMenu.setVisible(false);
   vBoxSubMenu11.setVisible(true);
   arrowBack.setVisible(true);
+  buttonSiguiente.setVisible(true);
+  buttonAtras.setVisible(false);
  }
 
 
@@ -57,8 +64,10 @@ public class MenuController implements Initializable {
 
   if (menuUsuario.isVisible()){
    menuUsuario.setVisible(false);
+   buttonSiguiente.setVisible(true);
   }else{
    menuUsuario.setVisible(true);
+   buttonSiguiente.setVisible(false);
   }
 
  }
@@ -69,6 +78,8 @@ public class MenuController implements Initializable {
   vBoxSubMenu11.setVisible(false);
   vBoxSubMenu12.setVisible(false);
   arrowBack.setVisible(false);
+  buttonSiguiente.setVisible(false);
+  buttonAtras.setVisible(false);
 
  }
 
@@ -79,11 +90,55 @@ public class MenuController implements Initializable {
   System.exit(0);
  }
 
+ @FXML
+ public void onButtonSiguienteClicked(MouseEvent event){
+   if(vBoxSubMenu11.isVisible()){
+     vBoxSubMenu12.setVisible(true);
+     vBoxSubMenu11.setVisible(false);
+     buttonAtras.setVisible(true);
+   }else if(vBoxSubMenu12.isVisible()) {
+    vBoxSubMenu13.setVisible(true);
+    vBoxSubMenu12.setVisible(false);
+   }else{
+    vBoxSubMenu14.setVisible(true);
+    vBoxSubMenu13.setVisible(false);
+    buttonSiguiente.setVisible(false);
+   }
+ }
+
+ @FXML
+ public void onButtonAtrasClicked(MouseEvent event){
+
+  if(vBoxSubMenu14.isVisible()){
+   vBoxSubMenu14.setVisible(false);
+   vBoxSubMenu13.setVisible(true);
+   buttonSiguiente.setVisible(true);
+  }else if(vBoxSubMenu13.isVisible()){
+   vBoxSubMenu13.setVisible(false);
+   vBoxSubMenu12.setVisible(true);
+  }else if(vBoxSubMenu12.isVisible()){
+   vBoxSubMenu12.setVisible(false);
+   vBoxSubMenu11.setVisible(true);
+   buttonAtras.setVisible(false);
+   buttonAtras.setVisible(false);
+  }
+ }
+
+
+
  @Override
  public void initialize(URL url, ResourceBundle resourceBundle) {
-   arrowBack.setVisible(false);
+
+  arrowBack.setVisible(false);
   menuUsuario.setVisible(false);
   vBoxMenu.setVisible(true);
+  vBoxSubMenu11.setVisible(false);
+  vBoxSubMenu12.setVisible(false);
+  vBoxSubMenu13.setVisible(false);
+  vBoxSubMenu14.setVisible(false);
+  buttonSiguiente.setVisible(false);
+  buttonAtras.setVisible(false);
+
 
  }
 }
