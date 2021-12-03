@@ -12,24 +12,24 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="1223.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.getmore.RegistroController">
    <children>
-      <AnchorPane fx:id="registroPane" layoutX="-1.0" prefHeight="490.0" prefWidth="411.0" style="-fx-background-color: FFFFFF;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="registroPane" layoutX="-1.0" prefHeight="490.0" prefWidth="411.0" style="-fx-background-color: FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label layoutX="108.0" layoutY="104.0" text="REGISTRATE" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="108.0">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldNombre" layoutX="56.0" layoutY="175.0" prefHeight="25.0" prefWidth="299.0" promptText="Nombre" style="-fx-background-color: E5EEEB; -fx-background-radius: 10px; -fx-border-radius: 10px;" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0">
+            <TextField fx:id="textFieldNombreReg" layoutX="56.0" layoutY="175.0" prefHeight="25.0" prefWidth="299.0" promptText="Nombre" style="-fx-background-color: E5EEEB; -fx-background-radius: 10px; -fx-border-radius: 10px;" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="textFieldApellido" layoutX="56.0" layoutY="220.0" prefHeight="25.0" prefWidth="299.0" promptText="Apellido" style="-fx-background-color: E5EEEB; -fx-background-radius: 10px; -fx-border-radius: 10px;" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0">
+            <TextField fx:id="textFieldApellidoReg" layoutX="56.0" layoutY="220.0" prefHeight="25.0" prefWidth="299.0" promptText="Apellido" style="-fx-background-color: E5EEEB; -fx-background-radius: 10px; -fx-border-radius: 10px;" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="textFieldEdad" layoutX="56.0" layoutY="263.0" prefHeight="30.0" prefWidth="138.0" promptText="Edad" style="-fx-background-color: E5EEEB; -fx-background-radius: 10px; -fx-border-radius: 10px;" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="216.79999999999998">
+            <TextField fx:id="textFieldEdadReg" layoutX="56.0" layoutY="263.0" prefHeight="30.0" prefWidth="138.0" promptText="Edad" style="-fx-background-color: E5EEEB; -fx-background-radius: 10px; -fx-border-radius: 10px;" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="216.79999999999998">
                <font>
                   <Font size="14.0" />
                </font>
@@ -48,21 +48,31 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Label>
+            <Label fx:id="labelErrorReg" alignment="CENTER" layoutX="179.0" layoutY="371.0" textFill="RED" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="inicioSesionPane" layoutX="9.0" layoutY="10.0" onMouseClicked="#onRegistroClicked" prefHeight="490.0" prefWidth="411.0" style="-fx-background-color: FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fx:id="loginImagen" fitHeight="493.0" fitWidth="810.0" layoutX="402.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@imagenes/imagen-login.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="inicioSesionPane" layoutX="9.0" layoutY="10.0" onMouseClicked="#onRegistroClicked" prefHeight="490.0" prefWidth="411.0" style="-fx-background-color: FFFFFF;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="106.0" prefHeight="54.0" prefWidth="235.0" text="INICIO SESIÓN" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldNombre1" layoutX="56.0" layoutY="175.0" prefHeight="25.0" prefWidth="299.0" promptText="Nombre" style="-fx-background-color: E5EEEB; -fx-background-radius: 10px; -fx-border-radius: 10px;" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0">
+            <TextField fx:id="textFieldNombreIS" layoutX="56.0" layoutY="175.0" prefHeight="25.0" prefWidth="299.0" promptText="Nombre" style="-fx-background-color: E5EEEB; -fx-background-radius: 10px; -fx-border-radius: 10px;" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="textFieldApellido1" layoutX="56.0" layoutY="220.0" prefHeight="25.0" prefWidth="299.0" promptText="Apellido" style="-fx-background-color: E5EEEB; -fx-background-radius: 10px; -fx-border-radius: 10px;" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0">
+            <TextField fx:id="textFieldApellidoIS" layoutX="56.0" layoutY="220.0" prefHeight="25.0" prefWidth="299.0" promptText="Apellido" style="-fx-background-color: E5EEEB; -fx-background-radius: 10px; -fx-border-radius: 10px;" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -81,12 +91,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
+            <Label fx:id="labelErrorIS" alignment="CENTER" layoutX="192.0" layoutY="330.0" textFill="RED" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <ImageView fx:id="loginImagen" fitHeight="493.0" fitWidth="810.0" layoutX="402.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@imagenes/imagen-login.jpg" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
