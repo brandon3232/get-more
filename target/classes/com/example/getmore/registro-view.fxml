@@ -52,7 +52,7 @@
       </AnchorPane>
       <AnchorPane fx:id="inicioSesionPane" layoutX="9.0" layoutY="10.0" onMouseClicked="#onRegistroClicked" prefHeight="490.0" prefWidth="411.0" style="-fx-background-color: FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="88.0" layoutY="106.0" prefHeight="54.0" prefWidth="235.0" text="INICIO SESIÓN" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="88.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="106.0" prefHeight="54.0" prefWidth="235.0" text="INICIO SESIÓN" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
                <font>
                   <Font size="36.0" />
                </font>
@@ -67,7 +67,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="buttonCrear1" layoutX="56.0" layoutY="265.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="25.0" prefWidth="299.0" style="-fx-background-color: FFC09F; -fx-background-radius: 10px;" text="Ingresar" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0">
+            <Button fx:id="buttonInicioSesion" layoutX="56.0" layoutY="265.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="25.0" prefWidth="299.0" style="-fx-background-color: FFC09F; -fx-background-radius: 10px;" text="Ingresar" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -76,7 +76,7 @@
                </cursor>
             </Button>
             <Label layoutX="111.0" layoutY="298.0" prefHeight="18.0" prefWidth="98.0" text="¿ya tienes cuenta?" AnchorPane.leftAnchor="111.0" AnchorPane.rightAnchor="201.79999999999998" />
-            <Label fx:id="labelRegistro" layoutX="209.0" layoutY="298.0" text="Registrate" textFill="#22a6f1" underline="true" AnchorPane.rightAnchor="148.59999999999997">
+            <Label layoutX="209.0" layoutY="298.0" text="Registrate" textFill="#22a6f1" underline="true" AnchorPane.rightAnchor="148.59999999999997">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
