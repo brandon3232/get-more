@@ -385,13 +385,13 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox fx:id="vBoxSubMenu11" prefHeight="462.0" prefWidth="1280.0" visible="false">
+                  <VBox fx:id="vBoxSubMenu11" prefHeight="462.0" prefWidth="1280.0">
                      <children>
                         <HBox alignment="TOP_CENTER" prefHeight="220.0" prefWidth="1280.0" style="-fx-background-color: FFFFFF;">
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: E6EDFF; -fx-background-radius: 50px;">
                                  <children>
-                                    <ImageView fx:id="imagenAbecedario" fitHeight="85.0" fitWidth="84.0" layoutX="58.0" layoutY="31.0" onMouseClicked="#onImagenAbecedarioClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="30.0">
+                                    <ImageView fx:id="imagenA" fitHeight="85.0" fitWidth="84.0" layoutX="58.0" layoutY="31.0" onMouseClicked="#onImagenAClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="30.0">
                                        <image>
                                           <Image url="@imagenes/book-stack.png" />
                                        </image>
@@ -777,7 +777,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox fx:id="vBoxSubMenu13" layoutX="7.0" prefHeight="462.0" prefWidth="1280.0">
+                  <VBox fx:id="vBoxSubMenu13" layoutX="7.0" prefHeight="462.0" prefWidth="1280.0" visible="false">
                      <children>
                         <HBox alignment="TOP_CENTER" prefHeight="220.0" prefWidth="1280.0" style="-fx-background-color: FFFFFF;">
                            <children>

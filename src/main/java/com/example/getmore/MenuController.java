@@ -3,7 +3,10 @@ package com.example.getmore;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -11,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,6 +22,35 @@ public class MenuController implements Initializable {
 
  private RegistroController registroController;
  private Stage stage;
+
+
+
+
+
+
+
+
+
+ private Stage stage1;
+
+ public void show() {
+  stage1.show();
+ }
+
+ public void init1(String nombre,String apellido) throws IOException {
+  FXMLLoader fxmlLoader = new FXMLLoader(GetMoreApplication.class.getResource("clase-view.fxml"));
+  Parent root = fxmlLoader.load();
+  ClaseController controller = fxmlLoader.getController();
+  Scene scene = new Scene(root);
+  Stage stage = new Stage();
+  stage.setScene(scene);
+  controller.init2(nombre,apellido,stage,this);
+  stage.show();
+  this.stage1.close();
+ }
+
+
+
 
 
  @FXML private VBox menuUsuario;
@@ -35,6 +68,7 @@ public class MenuController implements Initializable {
  @FXML private VBox vBoxSubMenu14;
  @FXML private Button buttonSiguiente;
  @FXML private Button buttonAtras;
+ @FXML private ImageView imagenA;
 
  public void init(String nombre, String apellido,Stage stage, RegistroController registroController1){
   labelHolaNombre.setText("Hola " + nombre);
@@ -124,7 +158,12 @@ public class MenuController implements Initializable {
   }
  }
 
+ @FXML
+ public void onImagenAClicked(MouseEvent event) throws IOException {
 
+  init1("brandon","gutierrez");
+
+ }
 
  @Override
  public void initialize(URL url, ResourceBundle resourceBundle) {
