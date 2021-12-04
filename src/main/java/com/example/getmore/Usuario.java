@@ -1,7 +1,9 @@
 package com.example.getmore;
 
 
-public class Usuario {
+import java.io.*;
+
+public class Usuario implements Serializable {
     private String nombre;
     private String apellido;
     private int edad;
@@ -12,31 +14,49 @@ public class Usuario {
     //sobrecarga de constructores
     Usuario(){}
 
-    Usuario(String nombre, String apellido, int edad, String sexo, float temaCursado, float calificaciones){
+    Usuario(String nombre, String apellido){
         this.nombre=nombre;
         this.apellido=apellido;
-        this.edad=edad;
-        this.sexo=sexo;
-        this.temaCursado=temaCursado;
-
-
     }
 
     //metodos
 
-    public Usuario guardarUsuario(String nombre, String apellido, int edad, String sexo, float temaCursado, float calificaciones){
-        Usuario usuario = new Usuario(nombre, apellido, edad,sexo, temaCursado, calificaciones);
+    public static void guardarUsuario(String nombre, String apellido){
 
-        //TODO: implementar el guardado de datos de usuario en archivo de texto
+        try{
+            Usuario usuario = new Usuario(nombre, apellido);
+
+            String nombreArchivo = nombre + apellido;
+
+            OutputStream os = new FileOutputStream(nombreArchivo);
+            ObjectOutputStream oos = new ObjectOutputStream(os);
+
+            oos.writeObject(usuario);
+            oos.close();
+
+            System.out.println("La escritura se a completado");
 
 
-        return usuario;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public Usuario buscarUsuario(String nombre, String apellido){
+    public static Usuario buscarUsuario(String nombre, String apellido) throws IOException {
         Usuario usuario = new Usuario();
+        String nombreArchivo = nombre + apellido;
 
-        //TODO: implementar la busqueda del archivo con el nombre de usuario con su respectivo try catch(manejo de errores)
+        try {
+            InputStream is = new FileInputStream(nombreArchivo);
+            ObjectInputStream ois = new ObjectInputStream(is);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+
+        }
 
         return usuario;
     }

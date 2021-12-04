@@ -84,9 +84,11 @@ public class RegistroController implements Initializable {
         if (evt.equals(buttonCrear)) {
             if (!comboBoxSexo.getSelectionModel().isEmpty() && !textFieldNombreReg.getText().isEmpty() && !textFieldApellidoReg.getText().isEmpty() && !textFieldEdadReg.getText().isEmpty()) {
                 labelErrorReg.setVisible(false);
-                //TODO: aqui se va a ir agregando los datos de los usuarios registrados a la base de datos
-                //TODO:hacer que se cierre la ventana de login y se abra el menu con los datos del usuario
 
+                String nombre = textFieldNombreIS.getText();
+                String apellido = textFieldApellidoIS.getText();
+
+                Usuario.guardarUsuario(nombre,apellido);
 
 
 
@@ -99,9 +101,10 @@ public class RegistroController implements Initializable {
             if (evt.equals(buttonInicioSesion)) {
                 if (!textFieldNombreIS.getText().isEmpty() && !textFieldApellidoIS.getText().isEmpty()) {
                     labelErrorReg.setVisible(false);
-                    //TODO: aqui se van a validad los datos de los usuarios que inician sesion
-                    //TODO:hacer que se cierre la ventana de login y se abra el menu con los datos del usuario
+                    String nombre = textFieldNombreIS.getText();
+                    String apellido = textFieldApellidoIS.getText();
 
+                    Usuario.buscarUsuario(nombre , apellido);
 
 
                     init(textFieldNombreIS.getText(),textFieldApellidoIS.getText());
@@ -111,17 +114,7 @@ public class RegistroController implements Initializable {
             }
         }
 
-
-
-
-
-
     }
-
-
-
-
-    //TODO: validar campos de texto (nombre y apellido no mas de 15 caracteres,edad tiene que ser 0<edad<100)
 
 
 

@@ -69,9 +69,12 @@ public class MenuController implements Initializable {
  @FXML private Button buttonSiguiente;
  @FXML private Button buttonAtras;
  @FXML private ImageView imagenA;
+ @FXML private Label labelNombre2;
+
 
  public void init(String nombre, String apellido,Stage stage, RegistroController registroController1){
   labelHolaNombre.setText("Hola " + nombre);
+  labelNombre2.setText(nombre + " " + apellido);
   this.registroController = registroController1;
   this.stage = stage;
  }

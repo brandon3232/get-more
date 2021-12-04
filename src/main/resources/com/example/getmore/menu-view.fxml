@@ -37,11 +37,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label alignment="CENTER" layoutX="1152.0" layoutY="11.5" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: FFFFFF; -fx-border-color: #000000; -fx-background-radius: 20px; -fx-border-radius: 20px;" text="BG">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
          </children></AnchorPane>
    </top>
    <center>
@@ -79,7 +74,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="brandon gutierrez">
+                              <Label fx:id="labelNombre2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="brandon gutierrez">
                                  <font>
                                     <Font size="18.5" />
                                  </font>
@@ -393,7 +388,7 @@
                                  <children>
                                     <ImageView fx:id="imagenA" fitHeight="85.0" fitWidth="84.0" layoutX="58.0" layoutY="31.0" onMouseClicked="#onImagenAClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="30.0">
                                        <image>
-                                          <Image url="@imagenes/book-stack.png" />
+                                          <Image url="@imagenes/A.png" />
                                        </image>
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
