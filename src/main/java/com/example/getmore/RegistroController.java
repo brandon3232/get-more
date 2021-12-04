@@ -3,12 +3,15 @@ package com.example.getmore;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -83,12 +86,18 @@ public class RegistroController implements Initializable {
 
         if (evt.equals(buttonCrear)) {
             if (!comboBoxSexo.getSelectionModel().isEmpty() && !textFieldNombreReg.getText().isEmpty() && !textFieldApellidoReg.getText().isEmpty() && !textFieldEdadReg.getText().isEmpty()) {
-                labelErrorReg.setVisible(false);
+
 
                 String nombre = textFieldNombreReg.getText();
                 String apellido = textFieldApellidoReg.getText();
-                int edad =Integer.parseInt(textFieldEdadReg.getText());
+                int edad = Integer.parseInt(textFieldEdadReg.getText());
 
+                if(!(edad < 0 || edad <100)){
+                    labelErrorReg.setText("edad tiene que ser mayor de 0 y menor de 100");
+                    return;
+                }
+
+                labelErrorReg.setText("");
                 Usuario.guardarUsuario(nombre,apellido,edad);
                 init(nombre,apellido);
             }else{
@@ -98,7 +107,7 @@ public class RegistroController implements Initializable {
 
             if (evt.equals(buttonInicioSesion)) {
                 if (!textFieldNombreIS.getText().isEmpty() && !textFieldApellidoIS.getText().isEmpty()) {
-                    labelErrorReg.setVisible(false);
+                    labelErrorReg.setText("");
                     String nombre = textFieldNombreIS.getText();
                     String apellido = textFieldApellidoIS.getText();
 
@@ -121,11 +130,62 @@ public class RegistroController implements Initializable {
         }
     }
 
+    EventHandler<KeyEvent> handlerLetters = new EventHandler<KeyEvent>() {
+        private  boolean willConsume = false;
+        @Override
+        public void handle(KeyEvent event) {
+
+            if (willConsume){
+                event.consume();
+            }
+
+            if(!event.getCode().toString().matches("[a-zA-Z]") && event.getCode() != KeyCode.BACK_SPACE && event.getCode() !=KeyCode.SHIFT){
+                if(event.getEventType() == KeyEvent.KEY_PRESSED){
+                    willConsume = true;
+                }else if(event.getEventType() == KeyEvent.KEY_RELEASED){
+                    willConsume = false;
+                }
+            }
+        }
+    };
+
+    EventHandler<KeyEvent> handlerNumbers = new EventHandler<KeyEvent>() {
+        private  boolean willConsume = false;
+        private int maxLength = 15;
+        @Override
+        public void handle(KeyEvent event) {
+            TextField temp = (TextField) event.getSource();
+            if (willConsume){
+                event.consume();
+            }
+            if(!event.getText().matches("[0-9]") && event.getCode() != KeyCode.BACK_SPACE){
+                if(event.getEventType() == KeyEvent.KEY_PRESSED){
+                    willConsume = true;
+                }else if(event.getEventType() == KeyEvent.KEY_RELEASED){
+                    willConsume = false;
+                }
+            }
+            if(temp.getText().length() > (maxLength - 1)){
+                if(event.getEventType() == KeyEvent.KEY_PRESSED){
+                    willConsume = true;
+                }else if(event.getEventType() == KeyEvent.KEY_RELEASED){
+                    willConsume = false;
+                }
+            }
+        }
+    };
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxSexo.setItems(comboSexoContent);
         inicioSesionPane.setVisible(true);
         registroPane.setVisible(false);
+        textFieldNombreReg.addEventFilter(KeyEvent.ANY, handlerLetters);
+        textFieldApellidoReg.addEventFilter(KeyEvent.ANY, handlerLetters);
+        textFieldNombreIS.addEventFilter(KeyEvent.ANY, handlerLetters);
+        textFieldApellidoIS.addEventFilter(KeyEvent.ANY, handlerLetters);
+        textFieldEdadReg.addEventFilter(KeyEvent.ANY, handlerNumbers);
     }
 }
