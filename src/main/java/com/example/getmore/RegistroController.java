@@ -85,15 +85,15 @@ public class RegistroController implements Initializable {
             if (!comboBoxSexo.getSelectionModel().isEmpty() && !textFieldNombreReg.getText().isEmpty() && !textFieldApellidoReg.getText().isEmpty() && !textFieldEdadReg.getText().isEmpty()) {
                 labelErrorReg.setVisible(false);
 
-                String nombre = textFieldNombreIS.getText();
-                String apellido = textFieldApellidoIS.getText();
+                String nombre = textFieldNombreReg.getText();
+                String apellido = textFieldApellidoReg.getText();
                 int edad =Integer.parseInt(textFieldEdadReg.getText());
 
                 Usuario.guardarUsuario(nombre,apellido,edad);
 
 
 
-                init(textFieldNombreReg.getText(),textFieldApellidoReg.getText());
+                init(nombre,apellido);
             }else{
                 labelErrorReg.setText("Existen campos vacios");
             }
@@ -108,7 +108,7 @@ public class RegistroController implements Initializable {
                     Usuario.buscarUsuario(nombre , apellido);
 
 
-                    init(textFieldNombreIS.getText(),textFieldApellidoIS.getText());
+                    init(nombre,apellido);
                 }else{
                     labelErrorIS.setText("Existen campos vacios");
                 }

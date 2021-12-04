@@ -24,15 +24,14 @@ public class Usuario implements Serializable {
     //metodos
 
     public static void guardarUsuario(String nombre, String apellido, int edad) {
-
+        Path path = Paths.get("");
+        String directoryName = path.toAbsolutePath().toString() + "/src/main/resources/com/example/getmore/usuarios/";
         try {
             Usuario usuario = new Usuario(nombre, apellido, edad);
-
             String nombreArchivo = nombre + apellido;
-
-            Path path = Paths.get("");
-            String directoryName = path.toAbsolutePath().toString();
-            OutputStream os = new FileOutputStream(directoryName+nombreArchivo);
+            directoryName =directoryName  + nombreArchivo;
+            System.out.println(directoryName);
+            OutputStream os = new FileOutputStream(directoryName+".bin");
             ObjectOutputStream oos = new ObjectOutputStream(os);
 
             oos.writeObject(usuario);
@@ -50,11 +49,14 @@ public class Usuario implements Serializable {
     }
 
     public static Usuario buscarUsuario(String nombre, String apellido) throws IOException, ClassNotFoundException {
+        Path path = Paths.get("");
+        String directoryName = path.toAbsolutePath().toString() + "/src/main/resources/com/example/getmore/usuarios/";
+
         String nombreArchivo = nombre + apellido;
         Usuario usuario;
 
 
-        InputStream is = new FileInputStream(nombreArchivo);
+        InputStream is = new FileInputStream(directoryName + nombreArchivo);
         ObjectInputStream ois = new ObjectInputStream(is);
 
         usuario = (Usuario) ois.readObject();
