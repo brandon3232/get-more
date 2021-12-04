@@ -77,7 +77,7 @@ public class RegistroController implements Initializable {
     }
 
     @FXML
-    public void eventAction(ActionEvent event) throws IOException{
+    public void eventAction(ActionEvent event) throws IOException, ClassNotFoundException {
 
         Object evt = event.getSource();
 
@@ -87,8 +87,9 @@ public class RegistroController implements Initializable {
 
                 String nombre = textFieldNombreIS.getText();
                 String apellido = textFieldApellidoIS.getText();
+                int edad =Integer.parseInt(textFieldEdadReg.getText());
 
-                Usuario.guardarUsuario(nombre,apellido);
+                Usuario.guardarUsuario(nombre,apellido,edad);
 
 
 
@@ -115,7 +116,6 @@ public class RegistroController implements Initializable {
         }
 
     }
-
 
 
     @Override

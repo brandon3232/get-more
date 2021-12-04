@@ -1,7 +1,7 @@
 package com.example.getmore;
-
-
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Usuario implements Serializable {
     private String nombre;
@@ -12,23 +12,27 @@ public class Usuario implements Serializable {
     private float calificaciones[];
 
     //sobrecarga de constructores
-    Usuario(){}
+    Usuario() {
+    }
 
-    Usuario(String nombre, String apellido){
-        this.nombre=nombre;
-        this.apellido=apellido;
+    Usuario(String nombre, String apellido, int edad) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
     }
 
     //metodos
 
-    public static void guardarUsuario(String nombre, String apellido){
+    public static void guardarUsuario(String nombre, String apellido, int edad) {
 
-        try{
-            Usuario usuario = new Usuario(nombre, apellido);
+        try {
+            Usuario usuario = new Usuario(nombre, apellido, edad);
 
             String nombreArchivo = nombre + apellido;
 
-            OutputStream os = new FileOutputStream(nombreArchivo);
+            Path path = Paths.get("");
+            String directoryName = path.toAbsolutePath().toString();
+            OutputStream os = new FileOutputStream(directoryName+nombreArchivo);
             ObjectOutputStream oos = new ObjectOutputStream(os);
 
             oos.writeObject(usuario);
@@ -38,37 +42,25 @@ public class Usuario implements Serializable {
 
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Error --> FileNotFountException" + e.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error --> IOException" + e.getMessage());
         }
 
     }
 
-    public static Usuario buscarUsuario(String nombre, String apellido) throws IOException {
-        Usuario usuario = new Usuario();
+    public static Usuario buscarUsuario(String nombre, String apellido) throws IOException, ClassNotFoundException {
         String nombreArchivo = nombre + apellido;
+        Usuario usuario;
 
-        try {
-            InputStream is = new FileInputStream(nombreArchivo);
-            ObjectInputStream ois = new ObjectInputStream(is);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
 
-        }
+        InputStream is = new FileInputStream(nombreArchivo);
+        ObjectInputStream ois = new ObjectInputStream(is);
+
+        usuario = (Usuario) ois.readObject();
+
+        ois.close();
 
         return usuario;
     }
-
-
-    //setters
-    public void setTemaCursado(float temaCursado) {
-        this.temaCursado = temaCursado;
-    }
-
-    public void setCalificaciones(float[] calificaciones) {
-        this.calificaciones = calificaciones;
-    }
-
 }
