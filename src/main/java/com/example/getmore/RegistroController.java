@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -90,9 +90,6 @@ public class RegistroController implements Initializable {
                 int edad =Integer.parseInt(textFieldEdadReg.getText());
 
                 Usuario.guardarUsuario(nombre,apellido,edad);
-
-
-
                 init(nombre,apellido);
             }else{
                 labelErrorReg.setText("Existen campos vacios");
@@ -105,16 +102,23 @@ public class RegistroController implements Initializable {
                     String nombre = textFieldNombreIS.getText();
                     String apellido = textFieldApellidoIS.getText();
 
-                    Usuario.buscarUsuario(nombre , apellido);
 
+                    try {
+                        Usuario.buscarUsuario(nombre , apellido);
+                        init(nombre,apellido);
+                    } catch (ClassNotFoundException e) {
+                        System.out.println("Error --> FileNotFountException" + e.getMessage());
+                        labelErrorIS.setText("Usuario no encontrado ");
+                    } catch (IOException e) {
+                        System.out.println("Error --> IOException " + e.getMessage());
+                        labelErrorIS.setText("Usuario no encontrado");
+                    }
 
-                    init(nombre,apellido);
                 }else{
                     labelErrorIS.setText("Existen campos vacios");
                 }
             }
         }
-
     }
 
 
@@ -124,6 +128,4 @@ public class RegistroController implements Initializable {
         inicioSesionPane.setVisible(true);
         registroPane.setVisible(false);
     }
-
-
 }

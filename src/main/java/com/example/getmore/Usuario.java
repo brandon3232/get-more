@@ -55,8 +55,7 @@ public class Usuario implements Serializable {
         String nombreArchivo = nombre + apellido;
         Usuario usuario;
 
-
-        InputStream is = new FileInputStream(directoryName + nombreArchivo);
+        InputStream is = new FileInputStream(directoryName + nombreArchivo + ".bin");
         ObjectInputStream ois = new ObjectInputStream(is);
 
         usuario = (Usuario) ois.readObject();
