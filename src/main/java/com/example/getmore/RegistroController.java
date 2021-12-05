@@ -92,7 +92,7 @@ public class RegistroController implements Initializable {
                 String apellido = textFieldApellidoReg.getText();
                 int edad = Integer.parseInt(textFieldEdadReg.getText());
 
-                if(!(edad < 0 || edad <100)){
+                if(edad < 0 || edad > 100){
                     labelErrorReg.setText("edad tiene que ser mayor de 0 y menor de 100");
                     return;
                 }
@@ -132,14 +132,21 @@ public class RegistroController implements Initializable {
 
     EventHandler<KeyEvent> handlerLetters = new EventHandler<KeyEvent>() {
         private  boolean willConsume = false;
+        private int maxLength = 15;
         @Override
         public void handle(KeyEvent event) {
-
+            TextField temp = (TextField) event.getSource();
             if (willConsume){
                 event.consume();
             }
-
-            if(!event.getCode().toString().matches("[a-zA-Z]") && event.getCode() != KeyCode.BACK_SPACE && event.getCode() !=KeyCode.SHIFT){
+            if(!event.getCode().toString().matches("[a-zA-Z]") && event.getCode() !=KeyCode.SHIFT){
+                if(event.getEventType() == KeyEvent.KEY_PRESSED){
+                    willConsume = true;
+                }else if(event.getEventType() == KeyEvent.KEY_RELEASED){
+                    willConsume = false;
+                }
+            }
+            if(temp.getText().length() > (maxLength - 1)){
                 if(event.getEventType() == KeyEvent.KEY_PRESSED){
                     willConsume = true;
                 }else if(event.getEventType() == KeyEvent.KEY_RELEASED){
@@ -151,14 +158,14 @@ public class RegistroController implements Initializable {
 
     EventHandler<KeyEvent> handlerNumbers = new EventHandler<KeyEvent>() {
         private  boolean willConsume = false;
-        private int maxLength = 15;
+        private int maxLength = 2;
         @Override
         public void handle(KeyEvent event) {
             TextField temp = (TextField) event.getSource();
             if (willConsume){
                 event.consume();
             }
-            if(!event.getText().matches("[0-9]") && event.getCode() != KeyCode.BACK_SPACE){
+            if(!event.getText().matches("[0-9]")){
                 if(event.getEventType() == KeyEvent.KEY_PRESSED){
                     willConsume = true;
                 }else if(event.getEventType() == KeyEvent.KEY_RELEASED){
@@ -184,8 +191,9 @@ public class RegistroController implements Initializable {
         registroPane.setVisible(false);
         textFieldNombreReg.addEventFilter(KeyEvent.ANY, handlerLetters);
         textFieldApellidoReg.addEventFilter(KeyEvent.ANY, handlerLetters);
+        textFieldEdadReg.addEventFilter(KeyEvent.ANY, handlerNumbers);
         textFieldNombreIS.addEventFilter(KeyEvent.ANY, handlerLetters);
         textFieldApellidoIS.addEventFilter(KeyEvent.ANY, handlerLetters);
-        textFieldEdadReg.addEventFilter(KeyEvent.ANY, handlerNumbers);
+
     }
 }

@@ -22,15 +22,6 @@ public class MenuController implements Initializable {
 
  private RegistroController registroController;
  private Stage stage;
-
-
-
-
-
-
-
-
-
  private Stage stage1;
 
  public void show() {
@@ -48,10 +39,6 @@ public class MenuController implements Initializable {
   stage.show();
   this.stage1.close();
  }
-
-
-
-
 
  @FXML private VBox menuUsuario;
  @FXML private ImageView buttonMenuUsuario;
@@ -106,7 +93,6 @@ public class MenuController implements Initializable {
    menuUsuario.setVisible(true);
    buttonSiguiente.setVisible(false);
   }
-
  }
 
  @FXML
@@ -180,7 +166,5 @@ public class MenuController implements Initializable {
   vBoxSubMenu14.setVisible(false);
   buttonSiguiente.setVisible(false);
   buttonAtras.setVisible(false);
-
-
  }
 }
